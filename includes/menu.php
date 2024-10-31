@@ -3,7 +3,7 @@ define('BASE_PATH', '/gerenciaweb/');
 ?>
 <!-- menu.php -->
 <nav class="navbar navbar-expand-lg navbar-dark-blue">
-    <a class="navbar-brand" href="#">MiApp</a>
+    <a class="navbar-brand" href="#">App</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -15,13 +15,13 @@ define('BASE_PATH', '/gerenciaweb/');
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo BASE_PATH; ?>gastos.php">Gastos</a>
+                <a class="nav-link" href="<?php echo BASE_PATH; ?>gastos/view/VhistorialGastos.php">Gastos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo BASE_PATH; ?>meta/index.php">Metas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo BASE_PATH; ?>consejo_financiero.php">Consejo Financiero</a>
+                <a class="nav-link" href="<?php echo BASE_PATH; ?>consejofinanciero/">Consejo Financiero</a>
             </li>
         </ul>
     </div>
@@ -43,4 +43,3 @@ define('BASE_PATH', '/gerenciaweb/');
         color: #66b2ff !important;
     }
 </style>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>

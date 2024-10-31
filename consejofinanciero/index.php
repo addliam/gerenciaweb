@@ -51,8 +51,9 @@
     </div>
 
     <script>
+        const APIURL = 'http://127.0.0.1:8000'
         document.getElementById('consultButton').addEventListener('click', function () {
-            fetch('http://localhost:8000/ia?userid=1')
+            fetch(`${APIURL}/ia?userid=1`)
                 .then(response => response.json())
                 .then(data => {
                     const resultContainer = document.getElementById('resultContainer');
