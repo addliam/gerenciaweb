@@ -28,10 +28,11 @@ class Gasto
     }
 
     // TODO: debe ser gastos del usuario actual, no todos
-    public function obtenerGastos()
+    public function obtenerGastos($usuario_id)
     {
         try {
-            $stmt = $this->conexion->prepare("CALL obtener_gastos()");
+            $stmt = $this->conexion->prepare("SELECT g.gasto_id, cg.nombre AS categoria_nombre, g.nombre AS gasto_nombre, g.monto, g.fecha FROM Gasto g JOIN CategoriaGasto cg ON g.categoriagasto_id = cg.categoriagasto_id WHERE g.usuario_id=:usuario_id ORDER BY g.gasto_id");
+            $stmt->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
             $stmt->execute();
             $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $resultados;

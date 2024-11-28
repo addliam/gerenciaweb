@@ -12,7 +12,9 @@ $categoriaGasto = $_POST["nombre_categoria"] ?? '';
 echo $categoriaGasto;
 
 $gasto = new Gasto();
-
-$gasto->insertarGasto(1, $nombreGasto, $montoGasto, $categoriaGasto);
+session_start();
+$SESSION_USUARIO_ID = $_SESSION['usuario_id'];
+// automatic en controlador
+$gasto->insertarGasto($SESSION_USUARIO_ID, $nombreGasto, $montoGasto, $categoriaGasto);
 
 ?>

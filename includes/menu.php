@@ -18,7 +18,10 @@ define('BASE_PATH', '/gerenciaweb/');
                 <a class="nav-link" href="<?php echo BASE_PATH; ?>gastos/view/VhistorialGastos.php">Gastos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo BASE_PATH; ?>meta/index.php">Metas</a>
+                <a class="nav-link" href="<?php echo BASE_PATH; ?>meta/view/VverListaMetas.php">Metas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo BASE_PATH; ?>racha/views/racha.php">Racha</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo BASE_PATH; ?>consejofinanciero/">Consejo Financiero</a>

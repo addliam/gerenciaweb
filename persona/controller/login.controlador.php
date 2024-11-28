@@ -21,7 +21,7 @@ if (!empty($_POST['btningresar'])) {
             // si es que no existe un registro ya en la tabla
             exit;
         } else {
-            echo '<div class="alert alert-danger">ACCESS DENEGADO</div>';
+            echo '<div class="alert alert-danger">CREDENCIALES INCORRECTAS</div>';
         }
     }
 }

@@ -1,8 +1,13 @@
+<!-- Fragmento necesario para validar haya iniciado sesion -->
+<?php require_once '../../includes/sessionmanager.php' ?>
+
 <?php
+$SESSION_USUARIO_ID = $_SESSION['usuario_id'];
 require_once '../model/GastoModel.php';
 $gasto = new Gasto();
-$gastos = $gasto->obtenerGastos();
+$gastos = $gasto->obtenerGastos($SESSION_USUARIO_ID);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -10,7 +15,7 @@ $gastos = $gasto->obtenerGastos();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabla de Gastos</title>
+    <title>Gastos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
