@@ -1,7 +1,11 @@
+<?php require_once '../../includes/sessionmanager.php' ?>
+
+
 <?php
+$SESSION_USUARIO_ID = $_SESSION['usuario_id'];
 require_once '../model/metaModel.php';
 $metaModel = new MetaModel();
-$metasNoAlcanzadas = $metaModel->getMetasNoAlcanzadas();
+$metasNoAlcanzadas = $metaModel->getMetasNoAlcanzadas($SESSION_USUARIO_ID);
 $categoria = $metaModel->getAllCategoriagasto();
 ?>
 <!DOCTYPE html>
@@ -56,6 +60,13 @@ $categoria = $metaModel->getAllCategoriagasto();
             font-size: 1.25rem;
             font-weight: 600;
         }
+
+        #btncontainer {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            justify-content: center;
+        }
     </style>
 </head>
 
@@ -65,7 +76,7 @@ $categoria = $metaModel->getAllCategoriagasto();
         <h1>Metas No Alcanzadas</h1>
     </header>
     <div class="container mt-5">
-        <div class="text-center mb-4">
+        <div id="btncontainer" class="text-center mb-4">
             <a href="../index.php" class="btn btn-primary">Registrar Nueva Meta</a>
             <a href="../view/VverListaMetas.php" class="btn btn-primary">Ver Todas las Metas</a>
         </div>

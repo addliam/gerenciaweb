@@ -20,20 +20,31 @@ class MetaModel
         return $this->conn->query($query);
     }
 
-    public function getAllMetas()
+    public function getAllMetas($usuario_id)
     {
         $query = "
         SELECT Meta.*, CategoriaGasto.nombre as categoria_nombre 
         FROM Meta 
         JOIN CategoriaGasto ON Meta.categoriagasto_id = CategoriaGasto.categoriagasto_id 
-        WHERE Meta.plazo >= CURDATE() OR Meta.progreso_actual >= 100
+        WHERE (Meta.plazo >= CURDATE() OR Meta.progreso_actual >= 100)
+        AND Meta.usuario_id = ?
         ORDER BY Meta.meta_id ASC
-        ";
+    ";
 
-        $result = $this->conn->query($query);
-        if (!$result) {
-            die('Error en la consulta: ' . $this->conn->error);
+        // Preparar la consulta
+        $stmt = $this->conn->prepare($query);
+        if ($stmt === false) {
+            die('Error en la preparación de la consulta: ' . $this->conn->error);
         }
+
+        // Vincular el parámetro
+        $stmt->bind_param('i', $usuario_id); // 'i' indica que el parámetro es un entero
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Obtener el resultado
+        $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -41,6 +52,7 @@ class MetaModel
             return [];
         }
     }
+
 
     public function getAllCategoriagasto()
     {
@@ -191,8 +203,9 @@ class MetaModel
         $stmt->close();
     }
 
-    public function getMetasNoAlcanzadas()
+    private function updateMetasData()
     {
+        // actualizar estados en tabla Meta
         $updateQuery = "
             UPDATE Meta 
             SET estado = 'No Alcanzado' 
@@ -211,15 +224,21 @@ class MetaModel
         }
         $updateStmt->close();
 
+    }
+    public function getMetasNoAlcanzadas($usuario_id)
+    {
+        $this->updateMetasData();
         $query = "
-            SELECT * FROM Meta 
-            WHERE estado = 'No Alcanzado' 
-            AND progreso_actual < 100";
+        SELECT * FROM Meta 
+        WHERE estado = 'No Alcanzado' 
+        AND progreso_actual < 100
+        AND usuario_id = ?";
         $stmt = $this->conn->prepare($query);
         if ($stmt === false) {
             die('Error al preparar la consulta: ' . $this->conn->error);
         }
 
+        $stmt->bind_param('i', $usuario_id);
         if (!$stmt->execute()) {
             die('Error al ejecutar la consulta: ' . $stmt->error);
         }
@@ -231,5 +250,6 @@ class MetaModel
 
         return $metas;
     }
+
 }
 ?>

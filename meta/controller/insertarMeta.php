@@ -1,8 +1,11 @@
 <?php
 require_once '../model/metaModel.php';
 
+session_start();
+$SESSION_USUARIO_ID = $_SESSION['usuario_id'];
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $usuario_id = 1;
+    $usuario_id = $SESSION_USUARIO_ID;
     //$usuario_id = $_POST['usuario_id'];
     $nombre = $_POST['nombre'];
     $monto_maximo = $_POST['monto_maximo'];
@@ -12,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $metaModel = new MetaModel();
     $metaModel->insertMeta($usuario_id, $nombre, $monto_maximo, $categoriagasto_id, $plazo);
     $metaModel->actualizarEstadoMetas();
-    
+
 
     header("Location: ../view/VverListaMetas.php");
     exit();
