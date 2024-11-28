@@ -53,6 +53,7 @@
         document.getElementById('fecha-inicio-racha').textContent = resultado.fechaInicioRacha;
         document.getElementById('fecha-fin-racha').textContent = resultado.fechaFinRacha;
         if (resultado.contador == 0) {
+            // poner img cara triste si contador es 0
             document.getElementById('imgracha').src = "../public/assets/sad.png"
             document.getElementById('mensaje-felicitaciones').textContent = "No tienes ningun dia de racha acumulado";
             document.getElementById('texto-fecha-inicio-racha1').textContent = "";
