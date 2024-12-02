@@ -63,9 +63,8 @@ $valores = $categoria->obtenerCategorias();
                 body: new FormData(formulario)
             }).then(response => response.text())
                 .then(response => {
-                    // alert(response);
+                    console.log(response);
                     window.location.replace("./view/VhistorialGastos.php");
-
                 })
         })
     </script>
