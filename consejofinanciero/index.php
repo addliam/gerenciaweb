@@ -1,6 +1,6 @@
 <?php
-
-?>
+include("../includes/sessionmanager.php")
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,7 +114,7 @@
         <div class="button-container">
             <button id="consultButton" class="btn btn-primary">Consultar ahora</button>
         </div>
-
+        <input type="hidden" id="usuarioid" value=<?php echo ($SESSION_USUARIO_ID) ?> />
         <div id="resultContainer" class="result-container">
             <!-- Aquí se mostrarán los resultados -->
         </div>
@@ -141,9 +141,12 @@
             return randomImage;
         }
 
+        // obtener usuario id
+        const userID = document.getElementById('usuarioid').value;
+        // TODO: limitar API y btn desde la vista, acorde a creditos restantes
         const APIURL = 'http://127.0.0.1:8000';
         document.getElementById('consultButton').addEventListener('click', function () {
-            fetch(`${APIURL}/ia?userid=1`)
+            fetch(`${APIURL}/ia?userid=${userID}`)
                 .then(response => response.json())
                 .then(data => {
                     const resultContainer = document.getElementById('resultContainer');

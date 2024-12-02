@@ -158,7 +158,7 @@
         border-radius: .9375rem;
         padding: .625rem 1.25rem .625rem 1.25rem;
         width: 50%;
-        height: 75%;
+        height: 80%;
         box-shadow: 0 .25rem .5rem rgba(0, 0, 0, 0.1);
         background: #000;
         display: flex;

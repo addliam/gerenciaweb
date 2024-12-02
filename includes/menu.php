@@ -3,6 +3,7 @@ define('BASE_PATH', '/gerenciaweb/');
 ?>
 <!-- menu.php -->
 <nav class="navbar navbar-expand-lg navbar-dark-blue">
+    <!-- Cambiar por nombre de app -->
     <a class="navbar-brand" href="#">App</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,10 +11,6 @@ define('BASE_PATH', '/gerenciaweb/');
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo BASE_PATH; ?>index.php">Inicio
-                </a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo BASE_PATH; ?>gastos/view/VhistorialGastos.php">Gastos</a>
             </li>
@@ -32,6 +29,12 @@ define('BASE_PATH', '/gerenciaweb/');
 
 <!-- Estilos específicos para menu.php -->
 <style>
+    ul.navbar-nav {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+
     .navbar-dark-blue {
         background-color: #003366;
         color: white;
