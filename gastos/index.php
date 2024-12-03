@@ -1,6 +1,3 @@
 <?php
-
-require './view/VformularioGastos.php';
-
+require_once './view/VformularioGastos.php';
 ?>
-

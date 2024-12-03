@@ -115,7 +115,7 @@ $gastos = $gasto->obtenerGastos($SESSION_USUARIO_ID);
     </header>
     <div class="container mt-5">
 
-        <a class="btn btn-primary" style="margin-bottom: 20px" href="..">Registrar Nuevo Gasto</a>
+        <a class="btn btn-primary" style="margin-bottom: 20px" href="./index.php">Registrar Nuevo Gasto</a>
         <div class="table-responsive">
             <div class="table-container">
                 <table class="table table-bordered table-sm">
@@ -196,7 +196,11 @@ $gastos = $gasto->obtenerGastos($SESSION_USUARIO_ID);
                     text: "",
                     icon: "success"
                 });
-                showModal(result.message);
+                // showModal(result.message);
+                // Recargar para actualizar vista de tabla
+                setTimeout(function() {
+                    location.reload();
+                }, 500);
             });
         });
 

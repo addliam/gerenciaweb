@@ -1,6 +1,8 @@
 <?php
-include("../includes/sessionmanager.php")
-    ?>
+include("../includes/sessionmanager.php");
+include("./consultar.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -121,6 +123,10 @@ include("../includes/sessionmanager.php")
     </div>
 
     <script>
+        // variables de PHP para usar 
+        const gastosJSON = <?= $gastos_json ?>;
+        const datospersonalesJSON = <?= $datospersonales_json ?>;
+
         const imagePaths = [
             "../icons/consejo/img1.png",
             "../icons/consejo/img2.png",
@@ -142,11 +148,26 @@ include("../includes/sessionmanager.php")
         }
 
         // obtener usuario id
-        const userID = document.getElementById('usuarioid').value;
+        // const userID = document.getElementById('usuarioid').value;
         // TODO: limitar API y btn desde la vista, acorde a creditos restantes
         const APIURL = 'http://127.0.0.1:8000';
+
+        const requestData = {
+            gastos: gastosJSON,
+            infopersonal: datospersonalesJSON
+        }
+
         document.getElementById('consultButton').addEventListener('click', function () {
-            fetch(`${APIURL}/ia?userid=${userID}`)
+            fetch(`${APIURL}/sugerencia`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    mode: 'no-cors',
+                    body: JSON.stringify(requestData)
+                }
+            )
                 .then(response => response.json())
                 .then(data => {
                     const resultContainer = document.getElementById('resultContainer');
@@ -170,6 +191,7 @@ include("../includes/sessionmanager.php")
                     console.error('Error:', error);
                 });
         });
+
     </script>
 
 

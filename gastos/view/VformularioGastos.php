@@ -1,6 +1,6 @@
 <?php
-
-require_once '../Categorias/model/CategoriaModel.php';
+// Corrigio un error tipeo en Folder Categorias -> categorias
+require_once '../categorias/model/CategoriaModel.php';
 $categoria = new Categoria();
 $valores = $categoria->obtenerCategorias();
 
