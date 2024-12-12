@@ -105,7 +105,7 @@ define("BASE_URL", "http://" . $host);
     </header>
     <div class="container mt-5">
 
-        <a class="btn btn-primary" style="margin-bottom: 20px" href="./index.php">Registrar Nuevo Gasto</a>
+        <a class="btn btn-primary" style="margin-bottom: 20px" href="../index.php">Registrar Nuevo Gasto</a>
         <div class="table-responsive">
             <div class="table-container">
                 <table class="table table-bordered table-sm">

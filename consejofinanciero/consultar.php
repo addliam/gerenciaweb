@@ -46,6 +46,14 @@ try {
     $stmt->bindParam(':usuario_id', $usuario_id, PDO::PARAM_INT);
     $stmt->execute();
     $res2 = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Check if $res2 is empty and set default values
+    if (!$res2) {
+        $res2 = [
+            "fecha_nacimiento" => "",
+            "ocupacion" => "",
+            "ingresos" => ""
+        ];
+    }
     $datospersonales_json = json_encode($res2);
 
     if (json_last_error() !== JSON_ERROR_NONE) {
