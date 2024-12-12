@@ -2,6 +2,17 @@
 define('BASE_PATH', '/gerenciaweb/');
 ?>
 <link rel="stylesheet" href="/gerenciaweb/includes/global.css">
+<style>
+    .logout-text {
+        text-decoration: none;
+        font-size: 1rem;
+        color: white;
+    }
+
+    #navbarNav {
+        justify-content: space-between;
+    }
+</style>
 <!-- menu.php -->
 <nav class="navbar navbar-expand-lg navbar-dark-blue">
     <!-- Cambiar por nombre de app -->
@@ -25,6 +36,12 @@ define('BASE_PATH', '/gerenciaweb/');
                 <a class="nav-link" href="<?php echo BASE_PATH; ?>consejofinanciero/">Consejo Financiero</a>
             </li>
         </ul>
+        <div class="logout-container">
+            <a class="logout-obj" href="<?php echo BASE_PATH; ?>includes/logout.php">
+                <span class="logout-text">Salir</span>
+                <img width="32px" height="auto" src="<?php echo BASE_PATH; ?>icons/icons8-logout-64.png" alt="logout">
+            </a>
+        </div>
     </div>
 </nav>
 
