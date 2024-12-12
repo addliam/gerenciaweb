@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (empty($email) || empty($contrasena)) {
         echo "<div class='alert alert-danger'>Todos los campos son obligatorios.</div>";
     } else {
-        // Validar email no exista en la base de datos
+        // Validar que el email no exista en la base de datos
         $stmt = $conexion->prepare("SELECT COUNT(*) AS total FROM Usuario WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -24,9 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($fila["total"] > 0) {
             echo "<div class='alert alert-warning'>El correo electrónico ya está registrado.</div>";
         } else {
-            // Insertar el nuevo usuario
+            // Encriptar la contraseña
+            $hashContrasena = password_hash($contrasena, PASSWORD_DEFAULT);
+
+            // Insertar el nuevo usuario con la contraseña encriptada
             $stmt = $conexion->prepare("INSERT INTO Usuario (email, contrasena) VALUES (?, ?)");
-            $stmt->bind_param("ss", $email, $contrasena);
+            $stmt->bind_param("ss", $email, $hashContrasena);
 
             if ($stmt->execute()) {
                 echo "<div class='alert alert-success'>Usuario registrado con éxito.</div>";
