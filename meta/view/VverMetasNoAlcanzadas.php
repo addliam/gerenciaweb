@@ -16,7 +16,12 @@ $categoria = $metaModel->getAllCategoriagasto();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metas No Alcanzadas</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/gerenciaweb/includes/global.css">
     <style>
+        header {
+            background-color: var(--color-rojo);
+        }
+
         body {
             background-color: #f8f9fa;
             /* Fondo gris claro */
@@ -72,7 +77,7 @@ $categoria = $metaModel->getAllCategoriagasto();
 
 <body>
     <?php include '../../includes/menu.php'; ?>
-    <header id="titulo" class="text-center p-4 bg-primary text-white">
+    <header id="titulo" class="text-center p-4 text-white">
         <h1>Metas No Alcanzadas</h1>
     </header>
     <div class="container mt-5">

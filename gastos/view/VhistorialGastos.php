@@ -32,23 +32,10 @@ define("BASE_URL", "http://" . $host);
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <link rel="stylesheet" href="../../includes/global.css">
     <style>
-        :root {
-            --color-primario: #5f63ad;
-            --color-secundario: #28a745;
-            --color-celeste: #16a3b8;
-            --color-verde-claro: #8ac34b;
-            --color-verde-oscuro: #1f564a;
-            --color-rojo: #dc3545;
-            --color-fondo: #fff;
-            --color-fondo-modal: rgba(0, 0, 0, 0.6);
-            --color-borde: #ddd;
-            --color-borde-hover: #e9ecef;
-            --color-scroll-thumb: #007bff;
-            --color-scroll-track: #f1f1f1;
-            --color-texto-primario: #333;
-            --color-texto-secundario: #555;
-            --color-texto-hover: #dc3545;
+        header {
+            background-color: var(--color-verde-claro);
         }
 
         table {
@@ -112,7 +99,7 @@ define("BASE_URL", "http://" . $host);
 <body>
 
     <?php include '../../includes/menu.php'; ?>
-    <header class="text-center bg-primary text-white p-4">
+    <header class="text-center text-white p-4">
         <h1>Historial de Gastos</h1>
     </header>
     <div class="container mt-5">

@@ -17,6 +17,7 @@ $categoria = $metaModel->getAllCategoriagasto();
     <title>Lista de Metas</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        header {background-color: var(--color-verde-claro);}
         .editable { display: none; }
         .progress-circle {
             width: 80px;
@@ -57,7 +58,7 @@ $categoria = $metaModel->getAllCategoriagasto();
 </head>
 <body>
     <?php include '../../includes/menu.php'; ?>
-    <header id="titulo" class="text-center p-4 bg-primary text-white">
+    <header id="titulo" class="text-center p-4 text-white">
         <h1>Lista de Metas</h1>
     </header>
     <div class="container mt-5">

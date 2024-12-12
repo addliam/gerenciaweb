@@ -11,7 +11,13 @@ include("./consultar.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consejo Financiero</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/gerenciaweb/includes/global.css">
+
     <style>
+        header {
+            background-color: var(--color-verde-claro);
+        }
+
         /* VARIABLES */
         :root {
             --color-header: #0d0d0d;
@@ -108,7 +114,7 @@ include("./consultar.php");
 
 <body>
     <?php include '../includes/menu.php'; ?>
-    <header class="text-center bg-primary text-white p-4">
+    <header class="text-center text-white p-4">
         <h1>Consejo Financiero</h1>
     </header>
 

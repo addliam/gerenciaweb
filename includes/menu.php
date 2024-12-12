@@ -1,10 +1,11 @@
 <?php
 define('BASE_PATH', '/gerenciaweb/');
 ?>
+<link rel="stylesheet" href="/gerenciaweb/includes/global.css">
 <!-- menu.php -->
 <nav class="navbar navbar-expand-lg navbar-dark-blue">
     <!-- Cambiar por nombre de app -->
-    <a class="navbar-brand" href="#">App</a>
+    <a class="navbar-brand" href="/gerenciaweb/">MoneyMentor</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,7 +37,7 @@ define('BASE_PATH', '/gerenciaweb/');
     }
 
     .navbar-dark-blue {
-        background-color: #003366;
+        background-color: var(--color-verde-oscuro);
         color: white;
     }
 

@@ -7,7 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Metas</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/gerenciaweb/includes/global.css">
     <style>
+        header {
+            background-color: var(--color-verde-claro);
+        }
+
         .contenedorformulario {
             margin-top: 1.5rem;
         }
@@ -17,7 +22,7 @@
 <body>
     <?php include '../includes/menu.php'; ?>
 
-    <header id="titulo" class="text-center p-4 bg-primary text-white">
+    <header id="titulo" class="text-center p-4 text-white">
         <h1>Gestión de Metas</h1>
     </header>
 
