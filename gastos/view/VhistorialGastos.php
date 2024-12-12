@@ -8,6 +8,19 @@ $gasto = new Gasto();
 $gastos = $gasto->obtenerGastos($SESSION_USUARIO_ID);
 ?>
 
+<?php
+
+$host = $_SERVER['HTTP_HOST'];
+define("BASE_URL", "http://" . $host);
+
+?>
+
+
+<script>
+    const validacion = "<?php echo $SESSION_USUARIO_ID ?>"
+
+</script>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,93 +31,83 @@ $gastos = $gasto->obtenerGastos($SESSION_USUARIO_ID);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <style>
-        /* Colores personalizados */
-        .btn-edit {
-            background-color: #13b2f5;
-            /* Picton Blue */
-            color: white;
-        }
+ 
+    :root {
+        --color-primario: #5f63ad;
+        --color-secundario: #28a745;
+        --color-celeste: #16a3b8;
+        --color-verde-claro: #8ac34b;
+        --color-verde-oscuro: #1f564a;
+        --color-rojo: #dc3545;
+        --color-fondo: #fff;
+        --color-fondo-modal: rgba(0, 0, 0, 0.6);
+        --color-borde: #ddd;
+        --color-borde-hover: #e9ecef;
+        --color-scroll-thumb: #007bff;
+        --color-scroll-track: #f1f1f1;
+        --color-texto-primario: #333;
+        --color-texto-secundario: #555;
+        --color-texto-hover: #dc3545;
+    }   
 
-        .btn-delete {
-            background-color: #0094b7;
-            /* Bondi Blue */
-            color: white;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: var(--color-fondo);
+        border: 2px solid var(--color-borde);
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        text-align: left;
+        margin-bottom: 20px;
+    }
 
-        .btn-edit:hover,
-        .btn-delete:hover {
-            opacity: 0.8;
-        }
+    th {
+        background-color: var(--color-verde-oscuro);
+        color: var(--color-fondo);
+        padding: 10px;
+        border-bottom: 3px solid var(--color-primario);
+        text-transform: uppercase;
+    }
 
-        /* Estilo para la tabla con scroll */
-        .table-container {
-            max-height: 400px;
-            /* Altura máxima de la tabla */
-            overflow-y: auto;
-            /* Habilita el scroll vertical */
-            border: 1px solid #dee2e6;
-            /* Borde para mejorar la visualización */
-            border-radius: 0.25rem;
-            /* Bordes redondeados */
-        }
+    td {
+        padding: 8px;
+        border-bottom: 1px solid var(--color-borde);
+        color: var(--color-texto-primario);
+    }
 
+    tr:nth-child(even) {
+        background-color: var(--color-borde-hover);
+    }
 
+    tr:hover {
+        background-color: var(--color-primario);
+        color: var(--color-fondo);
+    }
 
-        /* Ajustes para dispositivos pequeños */
-        @media (max-width: 240px) {
+    .btn-delete {
+        background-color: var(--color-rojo);
+        color: var(--color-fondo);
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-            .table th,
-            .table td {
-                font-size: 10px;
-                /* Fuente más pequeña */
-                padding: 4px;
-                /* Menor padding */
-            }
+    .btn-delete:hover {
+        background-color: var(--color-texto-hover);
+        opacity: 0.9;
+    }
 
-            .btn-edit,
-            .btn-delete {
-                font-size: 8px;
-                /* Botones más pequeños */
-            }
-        }
+    .table-header {
+        background-color: var(--color-primario);
+        color: var(--color-fondo);
+        font-weight: bold;
+    }
 
-        .modal {
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+</style>
 
-        .modal-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-            width: 300px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-        }
-    </style>
 </head>
 
 <body>
@@ -119,7 +122,7 @@ $gastos = $gasto->obtenerGastos($SESSION_USUARIO_ID);
         <div class="table-responsive">
             <div class="table-container">
                 <table class="table table-bordered table-sm">
-                    <thead class="thead-light">
+                    <thead >
                         <tr class="tr-cabecera">
                             <th>ID Gasto</th>
                             <th>Categoría</th>
@@ -172,6 +175,9 @@ $gastos = $gasto->obtenerGastos($SESSION_USUARIO_ID);
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
+        const BASE_URL = "<?php echo BASE_URL ?>"
+        const usuario_id = "<?php echo $SESSION_USUARIO_ID ?>"
+
 
         // Manejo de botones Eliminar
         document.querySelectorAll(".btn-delete").forEach(button => {
@@ -203,6 +209,71 @@ $gastos = $gasto->obtenerGastos($SESSION_USUARIO_ID);
                 }, 500);
             });
         });
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            // const response = await fetch(`${BASE_URL}/gerenciaweb-main/controller/GastoControlador.php?op=obtenerFechaUltimoGasto`, {
+            const response = await fetch(`../controller/GastoControlador.php?op=obtenerFechaUltimoGasto`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ usuario_id })
+            })
+
+            const result = await response.json();
+console.log(result.data)
+        const lastGastoDate = new Date(result.data);
+        const currentDate = new Date();
+        const differenceInDays = Math.floor((currentDate - lastGastoDate) / (1000 * 60 * 60 * 24));
+console.log(lastGastoDate)
+        if (differenceInDays >= 7) {
+            showAnimatedNotification(`¡Hace ${differenceInDays - 1 } días que no registras un gasto!`);
+            // console.log(`¡Hace ${differenceInDays} días que no registras un gasto!`);
+
+        }
+
+            // localStorage.setItem("lastAccessDate", currentDate.toISOString());
+            console.log(result);
+
+            function showAnimatedNotification(message) {
+            const notificationContainer = document.createElement("div");
+            notificationContainer.style.position = "fixed";
+            notificationContainer.style.top = "20px";
+            notificationContainer.style.right = "20px";
+            notificationContainer.style.padding = "20px";
+            notificationContainer.style.backgroundColor = "#FFD700";
+            notificationContainer.style.color = "#000";
+            notificationContainer.style.fontSize = "16px";
+            notificationContainer.style.fontWeight = "bold";
+            notificationContainer.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+            notificationContainer.style.borderRadius = "8px";
+            notificationContainer.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+            notificationContainer.style.zIndex = "1000";
+
+            notificationContainer.textContent = message;
+            document.body.appendChild(notificationContainer);
+
+            // Animación de entrada
+            notificationContainer.style.transform = "translateX(100%)";
+            notificationContainer.style.opacity = "0";
+            setTimeout(() => {
+                notificationContainer.style.transform = "translateX(0)";
+                notificationContainer.style.opacity = "1";
+            }, 100);
+
+            // Desaparición después de 5 segundos
+            setTimeout(() => {
+                notificationContainer.style.transform = "translateX(100%)";
+                notificationContainer.style.opacity = "0";
+                setTimeout(() => {
+                    notificationContainer.remove();
+                }, 500);
+            }, 5000);
+        }
+
+});
+
+
+
+       
 
     </script>
 
