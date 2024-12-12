@@ -47,7 +47,14 @@ class MetaModel
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
+            // TODO: esto debe hacerse en un trigger al insertar gasto para eficiencia
+            // REQUIERE UNA ACTUALIZACION DEL PROGRESO DE METAS
+            $metas = $result->fetch_all(MYSQLI_ASSOC);
+            foreach ($metas as $meta) {
+                // calcularProgreso tmb actualiza la tabla
+                $this->calcularProgreso($meta['meta_id']);
+            }
+            return $metas;
         } else {
             return [];
         }

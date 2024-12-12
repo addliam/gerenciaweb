@@ -158,9 +158,9 @@ include("./consultar.php");
         // const userID = document.getElementById('usuarioid').value;
         // TODO: limitar API y btn desde la vista, acorde a creditos restantes
         // localhost se puede usar solo cuando se corre en local
-        // const APIURL = 'http://127.0.0.1/api';
+        const APIURL = 'http://127.0.0.1:8000';
         // requiere ngrok activo
-        const APIURL = 'https://fresh-piglet-unified.ngrok-free.app//api';
+        // const APIURL = 'https://fresh-piglet-unified.ngrok-free.app//api';
 
         const requestData = {
             gastos: gastosJSON,
